@@ -1,0 +1,6 @@
+{
+  "require": {
+    "phpmicroservice/funch": "0.*",
+    "aliyuncs/oss-sdk-php": "^2.3"
+  }
+}
