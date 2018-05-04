@@ -1,12 +1,12 @@
 <?php
 
-namespace logic\Attachment\Validation;
+namespace app\Validation;
 
 /**
  *
  * @author Dongasai
  */
-class Validation extends \core\CoreValidation
+class Upload extends \pms\Validation
 {
 
     protected $store_config; //储存空间信息

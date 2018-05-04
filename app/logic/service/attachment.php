@@ -6,9 +6,9 @@
  * Time: 上午10:55
  */
 
-namespace logic\Attachment\service;
+namespace app\logic\service;
 
-use logic\Attachment\model as thisModel;
+use app\model as thisModel;
 
 class attachment
 {

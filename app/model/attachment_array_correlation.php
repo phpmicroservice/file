@@ -1,14 +1,14 @@
 <?php
 
 
-namespace logic\Attachment\model;
+namespace app\model;
 
 /**
  * 附件与附件集合 关系
  * Class attachment_array_correlation
  * @package logic\Attachment\model
  */
-class attachment_array_correlation extends \core\CoreModel
+class attachment_array_correlation extends \pms\Mvc\Model
 {
 
     /**

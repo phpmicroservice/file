@@ -1,6 +1,6 @@
 <?php
 
-namespace logic\Attachment\storeDriver;
+namespace app\logic\storeDriver;
 
 /**
  * 上传文件存在驱动的抽象方法

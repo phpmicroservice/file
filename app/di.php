@@ -29,11 +29,6 @@ $loader->register();
  */
 $di = new Phalcon\DI\FactoryDefault();
 
-$di->setShared('dConfig', function () {
-    #Read configuration
-    $config = new Phalcon\Config(require ROOT_DIR . '/config/config.php');
-    return $config;
-});
 
 $di->setShared('config', function () {
     #Read configuration
@@ -41,52 +36,8 @@ $di->setShared('config', function () {
     return $config;
 });
 
-/**
- * 本地缓存
- */
-$di->setShared('cache', function () {
-    // Create an Output frontend. Cache the files for 2 days
-    $frontCache = new \Phalcon\Cache\Frontend\Data(
-        [
-            "lifetime" => 172800,
-        ]
-    );
+include_once ROOT_DIR . '/app/FactoryDefault.php';
 
-    $cache = new \Phalcon\Cache\Backend\File(
-        $frontCache, [
-            "cacheDir" => CACHE_DIR,
-        ]
-    );
-    return $cache;
-});
-
-
-/**
- * session缓存
- */
-$di->setShared('sessionCache', function () use ($di) {
-    // Create an Output frontend. Cache the files for 2 days
-    $frontCache = new \Phalcon\Cache\Frontend\Data(
-        [
-            "lifetime" => 172800,
-        ]
-    );
-    output($di['config']->cache, 'gCache');
-    $op = [
-        "host" => getenv('SESSION_CACHE_HOST'),
-        "port" => getenv('SESSION_CACHE_PORT'),
-        "auth" => getenv('SESSION_CACHE_AUTH'),
-        "persistent" => getenv('SESSION_CACHE_PERSISTENT'),
-        'prefix' => getenv('SESSION_CACHE_PREFIX'),
-        "index" => getenv('SESSION_CACHE_INDEX')
-    ];
-    if (empty($op['auth'])) {
-        unset($op['auth']);
-    }
-    $cache = new \Phalcon\Cache\Backend\Redis(
-        $frontCache, $op);
-    return $cache;
-});
 
 
 $di["router"] = function () {
@@ -105,12 +56,6 @@ $di["router"] = function () {
     return $router;
 };
 
-//注册过滤器,添加了几个自定义过滤方法
-$di->setShared('filter', function () {
-    $filter = new \Phalcon\Filter();
-//    $filter->add('json', new \core\Filter\JsonFilter());
-    return $filter;
-});
 //事件管理器
 $di->setShared('eventsManager', function () {
     $eventsManager = new \Phalcon\Events\Manager();
@@ -118,12 +63,6 @@ $di->setShared('eventsManager', function () {
 });
 
 
-//注册过滤器,添加了几个自定义过滤方法
-$di->setShared('filter', function () {
-    $filter = new \Phalcon\Filter();
-//    $filter->add('json', new \core\Filter\JsonFilter());
-    return $filter;
-});
 
 
 $di->set(
@@ -136,29 +75,6 @@ $di->setShared('logger', function () {
     $logger = new \pms\Logger\Adapter\MysqlLog('log');
     return $logger;
 });
-
-
-/**
- * Database connection is created based in the parameters defined in the
- * configuration file
- */
-$di["db"] = function () use ($di) {
-    return new DbAdapter(
-        [
-            "host" => getenv('MYSQL_HOST'),
-            "port" => getenv('MYSQL_PORT'),
-            "username" => getenv('MYSQL_USERNAME'),
-            "password" => getenv('MYSQL_PASSWORD'),
-            "dbname" => getenv('MYSQL_DBNAME'),
-            "options" => [
-                \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
-                \PDO::ATTR_CASE => \PDO::CASE_LOWER,
-            ],
-        ]
-    );
-};
-
-
 
 
 

@@ -1,8 +1,7 @@
 <?php
 
-namespace logic\Attachment\storeDriver;
+namespace app\logic\storeDriver;
 
-use core\Sundry\Trace;
 use OSS\OssClient;
 use OSS\Core\OssException;
 

@@ -1,21 +1,22 @@
 <?php
 
+namespace app\logic;
 
-namespace logic\Common;
+use app\Base;
 
 /**
  * 附件工具
  * Class attachment
  * @package logic\Common
- * @property \logic\Attachment\attachmentArray attachmentArray
+ * @property \app\logic\attachmentArray attachmentArray
  */
-class attachment extends \core\CoreService
+class attachment extends Base
 {
 
     public function __construct()
     {
         $this->di->set('attachmentArray', function () {
-            return new \logic\Attachment\attachmentArray();
+            return new \app\logic\attachmentArray();
         });
     }
 

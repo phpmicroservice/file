@@ -1,9 +1,8 @@
 <?php
 
-namespace logic\Attachment\service;
+namespace app\logic\service;
 
-use core\Sundry\Trace;
-use logic\Attachment\model as thisModel;
+use app\model as thisModel;
 
 
 /**

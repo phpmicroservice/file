@@ -24,7 +24,8 @@ define('RUN_MICROTIME', microtime(true));
 
 # 加载扩展
 require WEB_DIR . '/vendor/autoload.php';
-
+# 加载函数库
+require ROOT_DIR . '/tool/function.php';
 error_reporting(E_ALL);
 
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace logic\Attachment\model;
+namespace app\model;
 
 /**
  * 附件表
  * Class attachment
  * @package logic\Attachment\model
  */
-class attachment extends \core\CoreModel
+class attachment extends \pms\Mvc\Model
 {
 
     /**

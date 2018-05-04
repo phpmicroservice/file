@@ -1,9 +1,9 @@
 <?php
 
-namespace logic\Attachment\model;
+namespace app\model;
 
 
-class attachment_type extends \core\CoreModel
+class attachment_type extends \pms\Mvc\Model
 {
 
     public static function info4type($type)

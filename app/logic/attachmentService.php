@@ -1,11 +1,12 @@
 <?php
 
-namespace logic\Attachment;
+namespace app\logic;
 
-use logic\Attachment\model\attachment_array_correlation;
+use app\Base;
+use \app\model\attachment_array_correlation;
 use logic\Attachment\Validation\get_array_index;
 
-class attachmentService extends \core\CoreService
+class attachmentService extends Base
 {
 
     /**
@@ -30,7 +31,7 @@ class attachmentService extends \core\CoreService
         if ($validation->isError()) {
             return $validation->getMessage();
         }
-        $model = new  model\attachment_array();
+        $model = new  \app\model\attachment_array();
         $model->setData($data);
         if ($model->save() === false) {
             return $model->getMessage();
@@ -52,11 +53,11 @@ class attachmentService extends \core\CoreService
             $attachment_user_id = [$attachment_user_id];
         }
         # 读取集合信息
-        $array_info = model\attachment_array::findFirstById($array_id);
+        $array_info = \app\model\attachment_array::findFirstById($array_id);
         if (empty($array_info)) {
             return '_empty-error';
         }
-        $attachment_user_id_old = model\attachment_array_correlation::get_list_index($array_id);
+        $attachment_user_id_old = \app\model\attachment_array_correlation::get_list_index($array_id);
         $del = array_diff($attachment_user_id_old, $attachment_user_id);
         $add = array_diff($attachment_user_id, $attachment_user_id_old);
         if ($array_info->only == 1 and count($add)) {

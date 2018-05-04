@@ -1,17 +1,17 @@
 <?php
 
 
-namespace logic\Attachment\service;
+namespace app\logic\service;
 
-use core\Sundry\Trace;
-use logic\Attachment\model as thisModel;
+use app\Base;
+use app\model as thisModel;
 
 /**
  * 附件用户关系
  * Class attachment_user
  * @package logic\Attachment\service
  */
-class attachment_user extends \core\CoreService
+class attachment_user extends Base
 {
 
 

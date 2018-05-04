@@ -1,7 +1,6 @@
 <?php
 
-namespace logic\Attachment;
-
+namespace app\logic;
 
 use logic\Attachment\model as thisModel;
 
@@ -35,7 +34,7 @@ class fileService
             return \core\ReturnMsg::create(404, false, [$id, $user_id]);
         }
         $attachment_user_info = $attachment_user->toArray();
-        $info = model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
+        $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
 
         return $attachment_user_info;
     }
@@ -78,7 +77,7 @@ class fileService
         $attachment_user = thisModel\attachment_user::findFirst4id($id);
 
 
-        $info = model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
+        $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
         # 此处就不用储存驱动来读取图片对象了 ,直接读取图片对象
         $fileName = ROOT_DIR . '/../upload/' . $info->savepath;
         if (!is_file($fileName)) {

@@ -1,15 +1,16 @@
 <?php
 
-namespace logic\Attachment;
+namespace app\logic;
 
-use core\Sundry\Trace;
+use app\Base;
+
 
 /**
  * 附件集的处理
  * Class attachmentArray
  * @package logic\Attachment
  */
-class attachmentArray extends \core\CoreService
+class attachmentArray extends Base
 {
 
 

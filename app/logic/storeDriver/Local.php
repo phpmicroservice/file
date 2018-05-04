@@ -1,6 +1,6 @@
 <?php
 
-namespace logic\Attachment\storeDriver;
+namespace app\logic\storeDriver;
 
 /**
  * 文件本地储存驱动

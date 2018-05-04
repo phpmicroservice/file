@@ -11,12 +11,14 @@ use Phalcon\Mvc\Model\Manager as ModelsManager;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Events\Manager;
 
+
 //注册自动加载
 $loader = new \Phalcon\Loader();
 $loader->registerNamespaces(
     [
         'app' => ROOT_DIR . '/app/',
-        'tool' => ROOT_DIR . '/extends/tool/'
+        'tool' => ROOT_DIR . '/extends/tool/',
+        'pms' => ROOT_DIR . '/vendor/phpmicroservice/pms-frame/src/'
     ]
 );
 $loader->register();
@@ -27,57 +29,8 @@ $loader->register();
  */
 $di = new Phalcon\DI\FactoryDefault();
 
+include_once ROOT_DIR . '/app/FactoryDefault.php';
 
-$di->setShared('Config', function () {
-    #Read configuration
-    $config = include ROOT_DIR . "/../config/config.c.php";
-    return $config;
-});
-
-
-$di->setShared('Cache', function () {
-    // Create an Output frontend. Cache the files for 2 days
-    $frontCache = new \Phalcon\Cache\Frontend\Data(
-        [
-            "lifetime" => 172800,
-        ]
-    );
-
-    $cache = new \Phalcon\Cache\Backend\File(
-        $frontCache, [
-            "cacheDir" => CACHE_DIR,
-        ]
-    );
-    return $cache;
-});
-
-
-/**
- * session缓存
- */
-$di->setShared('sessionCache', function () use ($di) {
-    // Create an Output frontend. Cache the files for 2 days
-    $frontCache = new \Phalcon\Cache\Frontend\Data(
-        [
-            "lifetime" => 172800,
-        ]
-    );
-
-    $op = [
-        "host" => getenv('SESSION_CACHE_HOST'),
-        "port" => getenv('SESSION_CACHE_PORT'),
-        "auth" => getenv('SESSION_CACHE_AUTH'),
-        "persistent" => getenv('SESSION_CACHE_PERSISTENT'),
-        'prefix' => getenv('SESSION_CACHE_PREFIX'),
-        "index" => getenv('SESSION_CACHE_INDEX')
-    ];
-    if (empty($op['auth'])) {
-        unset($op['auth']);
-    }
-    $cache = new \Phalcon\Cache\Backend\Redis(
-        $frontCache, $op);
-    return $cache;
-});
 
 
 $di["router"] = function () {
@@ -89,12 +42,6 @@ $di["router"] = function () {
     return $router;
 };
 
-//注册过滤器,添加了几个自定义过滤方法
-$di->setShared('filter', function () {
-    $filter = new \Phalcon\Filter();
-    $filter->add('json', new \core\Filter\JsonFilter());
-    return $filter;
-});
 
 // Registering the view component
 $di->set('view', function () {
@@ -192,8 +139,6 @@ $di->setShared('session', function () use ($di) {
     $_SESSION = $session;
     return $session;
 });
-
-
 
 
 

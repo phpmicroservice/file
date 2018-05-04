@@ -1,10 +1,10 @@
 <?php
 
 
-namespace logic\Attachment\model;
+namespace app\model;
 
 
-class attachment_user extends \core\CoreModel
+class attachment_user extends \pms\Mvc\Model
 {
     public $id = 0;
     public $attachment_id = 0;
@@ -33,7 +33,7 @@ class attachment_user extends \core\CoreModel
      */
     public function beforeUpdate()
     {
-        $this->auxiliary = $this->serialize($this->auxiliary);
+        $this->auxiliary = serialize($this->auxiliary);
     }
 
     /**
@@ -44,7 +44,7 @@ class attachment_user extends \core\CoreModel
         if (empty($this->auxiliary)) {
             $this->auxiliary = [];
         } else {
-            $this->auxiliary = $this->unserialize($this->auxiliary);
+            $this->auxiliary = unserialize($this->auxiliary);
         }
     }
 

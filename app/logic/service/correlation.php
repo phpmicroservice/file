@@ -2,14 +2,14 @@
 
 namespace logic\Attachment\service;
 
-use core\Sundry\Trace;
-use logic\Attachment\model as thisModel;
+use app\Base;
+use app\model as thisModel;
 
 /**
  * Class correlation
  * @package logic\Attachment\service
  */
-class correlation extends \core\CoreService
+class correlation extends Base
 {
 
 

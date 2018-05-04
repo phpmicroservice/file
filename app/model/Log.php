@@ -6,10 +6,12 @@
  * Time: 下午3:21
  */
 
-namespace logic\Common\model;
+namespace app\model;
 
 
-class Log extends \core\CoreModel
+use pms\Mvc\Model;
+
+class Log extends Model
 {
 
 }

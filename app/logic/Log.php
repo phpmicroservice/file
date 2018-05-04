@@ -3,9 +3,10 @@
 namespace logic\Common;
 
 
+use app\Base;
 use Phalcon\Di;
 
-class Log extends \core\CoreService
+class Log extends Base
 {
     protected static $LogModel;
 

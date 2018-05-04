@@ -1,6 +1,9 @@
 <?php
 
-namespace logic\Attachment;
+namespace app\logic;
+
+use app\Base;
+use app\Validation\Upload;
 
 
 /**
@@ -8,7 +11,7 @@ namespace logic\Attachment;
  * @author Dongasai 1514582970@qq.com
  *
  */
-class Uploader extends \core\CoreService
+class Uploader extends Base
 {
 
     private $attachment_store; //储存配置
@@ -25,7 +28,7 @@ class Uploader extends \core\CoreService
     public function __construct()
     {
         //读取配置信息
-        $data = model\attachment_store::findFirst('id = ' . $this->Config->app->attachment_store);
+        $data = \app\model\attachment_store::findFirst('id = ' . $this->dConfig->app->attachment_store);
         if ($data) {
             $this->attachment_store = $data->toArray();
         } else {
@@ -42,13 +45,13 @@ class Uploader extends \core\CoreService
     public function validation($type, $fileInfo)
     {
 
-        $rules = model\attachment_type::info4type($type);
+        $rules = \app\model\attachment_type::info4type($type);
         if (empty($rules)) {
             throw new \Phalcon\Exception('config error' . $type);
         }
 
         //上传之前进行文件验证
-        $validation = new Validation\Validation();
+        $validation = new Upload();
         $validation->setRules($rules);
 
         $validation->setStore($this->attachment_store);
@@ -69,7 +72,7 @@ class Uploader extends \core\CoreService
      * @param $uid
      * @param $type
      * @param array $auxiliary
-     * @return bool|model\attachment_user|string
+     * @return bool|\app\model\attachment_user|string
      */
     public function upFile($files, $uid, $type, $auxiliary = [])
     {
@@ -97,7 +100,7 @@ class Uploader extends \core\CoreService
         ];
 
         //实例化文件储存驱动
-        $driverName = ('logic\Attachment\storeDriver\\' . ucfirst($this->attachment_store['driver']));
+        $driverName = ('app\\logic\\storeDriver\\' . ucfirst($this->attachment_store['driver']));
         $storeDriver = new $driverName($this->attachment_store);
         $reInfo = $storeDriver->add($file->getTempName(), $save_config['file_store_path'], $save_config['store_path']);
 
@@ -116,7 +119,7 @@ class Uploader extends \core\CoreService
             'md5' => $reInfo['md5']
         ];
 
-        $attachmentModel = new model\attachment();
+        $attachmentModel = new \app\model\attachment();
         try {
             $re = $attachmentModel->save($data);
         } catch (\Exception $e) {
@@ -138,7 +141,7 @@ class Uploader extends \core\CoreService
     {
 
         $MD5 = md5_file($file->getTempName());
-        $re = model\attachment::findFirst(
+        $re = \app\model\attachment::findFirst(
             ['conditions' => 'md5 = "' . $MD5 . '"' . ' and ' .
                 'saveStore = ' . $this->attachment_store['id']]
         );
@@ -170,17 +173,17 @@ class Uploader extends \core\CoreService
 
     /**
      * 用户保存 文件保存
-     * @param model\attachment $model_data
+     * @param \app\model\attachment $model_data
      * @param $uid
      * @param \Phalcon\Http\Request\File $file
      * @param $type
      * @param array $auxiliary
-     * @return bool|model\attachment_user|string
+     * @return bool|\app\model\attachment_user|string
      */
-    public function user_save(model\attachment $model_data, $uid, \Phalcon\Http\Request\File $file, $type, $auxiliary = [])
+    public function user_save(\app\model\attachment $model_data, $uid, \Phalcon\Http\Request\File $file, $type, $auxiliary = [])
     {
         # 验证是否已经存在
-        $info = model\attachment_user::query()
+        $info = \app\model\attachment_user::query()
             ->where('user_id = :user_id:', ['user_id' => $uid])
             ->andWhere('attachment_id = :attachment_id:', ['attachment_id' => $model_data->id])
             ->andWhere('type = :type:', ['type' => $type])
@@ -201,7 +204,7 @@ class Uploader extends \core\CoreService
             'create_time' => time(),
             'auxiliary' => $auxiliary
         ];
-        $model_attachment_user = new model\attachment_user();
+        $model_attachment_user = new \app\model\attachment_user();
         $model_attachment_user->setData($data);
         if ($model_attachment_user->save() === false) {
             return $model_attachment_user->getMessage();

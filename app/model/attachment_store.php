@@ -1,13 +1,13 @@
 <?php
 
-namespace logic\Attachment\model;
+namespace app\model;
 
 /**
  * 附件储存表
  * Class attachment_store
  * @package logic\Attachment\model
  */
-class attachment_store extends \core\CoreModel
+class attachment_store extends \pms\Mvc\Model
 {
 
     public $configuration; //配置信息

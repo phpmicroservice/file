@@ -1,6 +1,6 @@
 <?php
 
-namespace logic\Attachment\storeDriver;
+namespace app\logic\storeDriver;
 
 /**
  * 上传文件存放 接口
