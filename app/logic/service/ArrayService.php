@@ -48,23 +48,23 @@ class ArrayService
      * @param $only
      * @return \Phalcon\Mvc\Model\Resultset|\Phalcon\Mvc\Phalcon\Mvc\Model
      */
-    public static function create_array($user_id, $remark, $only)
+    public static function create_array($user_id, $remark, $only, $server_name = 'article')
     {
         $data = [
             'user_id' => $user_id,
             'remark' => $remark,
             'create_time' => time(),
             'total' => 0,
-            'status' => 1,
-            'only' => $only
+            'status' => 0,
+            'only' => $only,
+            'server_name' => $server_name
         ];
         $model = new thisModel\attachment_array();
         $model->setData($data);
         if ($model->save() === false) {
-            Trace::add('error', $model->getMessage());
             return fasle;
         }
-        return $model->id;
+        return (int)$model->id;
     }
 
     /**
@@ -73,18 +73,23 @@ class ArrayService
      * @param $attachment_id_list
      * @return bool
      */
-    public static function correlation(int $array_id, $attachment_id_list)
+    public static function correlation(int $array_id, $attachment_id_list, $additional)
     {
         if (empty($attachment_id_list)) {
             return true;
         }
         $correlation = new correlation();
         $old_list = $correlation->get_attachment_user_id_list($array_id);
-        $del = array_diff($old_list, $attachment_id_list);
+        if ($additional) {
+            # 追加 不删除
+            $del = [];
+        } else {
+            $del = array_diff($old_list, $attachment_id_list);
+        }
+
         $add = array_diff($attachment_id_list, $old_list);
         $re = $correlation->add($array_id, $add);
         if ($re === false) {
-
             return false;
         }
         $re = $correlation->del($array_id, $del);
@@ -118,9 +123,11 @@ class ArrayService
         );
 
 
-        $model->setData(['total' => $total]);
+        $model->setData([
+            'total' => $total,
+            'status' => 1
+        ]);
         if ($model->save() === false) {
-            Trace::add('error', $model->getMessages());
             return false;
         }
         return true;

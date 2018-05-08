@@ -1,6 +1,6 @@
 <?php
 
-namespace logic\Attachment\service;
+namespace app\logic\service;
 
 use app\Base;
 use app\model as thisModel;
@@ -81,10 +81,6 @@ class correlation extends Base
             if (empty($value)) {
                 continue;
             }
-            $data = [
-                'array_id' => $array_id,
-                'attachment_user_id' => $value
-            ];
             $model = thisModel\attachment_array_correlation::findFirst([
                 'attachment_user_id =:attachment_user_id: and array_id=:array_id:',
                 'bind' => [

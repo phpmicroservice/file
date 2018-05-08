@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: saisai
- * Date: 17-6-7
- * Time: 上午10:55
- */
 
 namespace app\logic\service;
 
