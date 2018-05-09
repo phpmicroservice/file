@@ -18,4 +18,9 @@ class IndexController extends Base
         var_dump($this->session->get('user_id'));
     }
 
+    public function options()
+    {
+
+    }
+
 }
