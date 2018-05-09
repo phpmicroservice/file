@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-namespace apps\web\controllers;
+namespace app\web\controllers;
 
 use app\web\ReturnMsg;
 

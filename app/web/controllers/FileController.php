@@ -1,14 +1,14 @@
 <?php
 
-namespace apps\web\controllers;
+namespace app\web\controllers;
 
-use app\Controller;
-use logic\Attachment as mainUpload;
+
+use app\logic as mainUpload;
 
 /**
  * 文件上传处理
  */
-class FileController extends Controller
+class FileController extends BaseController
 {
 
     public function initialize()

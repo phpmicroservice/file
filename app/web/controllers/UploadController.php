@@ -2,7 +2,6 @@
 
 namespace app\web\controllers;
 
-use apps\web\controllers\BaseController;
 use app\web\ReturnMsg;
 
 /**

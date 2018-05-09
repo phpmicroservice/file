@@ -2,7 +2,10 @@
 
 namespace app\logic;
 
-use logic\Attachment\model as thisModel;
+use app\model as thisModel;
+use app\web\ReturnMsg;
+use app\validator\getPicPath;
+use pms\Validation;
 
 /**
  * Description of fileService
@@ -31,10 +34,10 @@ class fileService
         ]);
 
         if (!$attachment_user) {
-            return \core\ReturnMsg::create(404, false, [$id, $user_id]);
+            return ReturnMsg::create(404, false, [$id, $user_id]);
         }
         $attachment_user_info = $attachment_user->toArray();
-        $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
+        # $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
 
         return $attachment_user_info;
     }
@@ -46,7 +49,7 @@ class fileService
     public function getPic($id, $uid)
     {
         $fileObj = $this->getfile($id, $uid);
-        if (!$fileObj instanceof \core\Sundry\File) {
+        if (!$fileObj instanceof File) {
             return $fileObj;
         }
         $image = new \Phalcon\Image\Adapter\Gd($fileObj->getPath());
@@ -62,9 +65,9 @@ class fileService
      */
     private function getfile($id, $uid)
     {
-        $validation = new \core\CoreValidation();
+        $validation = new Validation();
         $validation->add_Validator('id', [
-            'name' => Validator\getPicPath::class,
+            'name' => getPicPath::class,
             'message' => 'unfound'
         ]);
         $data = [
@@ -72,18 +75,18 @@ class fileService
             'id' => $id
         ];
         if (!$validation->validate($data)) {
-            return \core\ReturnMsg::create(400, $validation->getMessage());
+            return \app\web\ReturnMsg::create(400, $validation->getMessage());
         }
         $attachment_user = thisModel\attachment_user::findFirst4id($id);
 
 
         $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
         # 此处就不用储存驱动来读取图片对象了 ,直接读取图片对象
-        $fileName = ROOT_DIR . '/../upload/' . $info->savepath;
+        $fileName = ROOT_DIR . '/upload/' . $info->savepath;
         if (!is_file($fileName)) {
-            return \core\ReturnMsg::create(410, 'gone' . $fileName);
+            return ReturnMsg::create(410, 'gone' . $fileName);
         }
-        $fileObj = new \core\Sundry\File($fileName);
+        $fileObj = new File($fileName);
         $fileObj->setAsname($attachment_user->primitive_name);
         return $fileObj;
     }
