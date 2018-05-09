@@ -8,7 +8,7 @@
 return [
     'config_init' => false,
     'server_reg' => true,
-    'session' => false,
+    'session' => true,
     'ready' => false,
     'codeUpdata' => [
         '/app/',

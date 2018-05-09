@@ -1,6 +1,6 @@
 <?php
 
-namespace logic\Common;
+namespace logic\logic;
 
 
 use app\Base;

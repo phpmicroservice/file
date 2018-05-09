@@ -24,11 +24,12 @@ class Controller extends \pms\Controller
      */
     public function initialize()
     {
+
         $this->di->setShared('message', function () {
             return new Group();
         });
         parent::initialize();
-        #
+        $this->user_id = $this->session->get('user_id');
     }
 
 
