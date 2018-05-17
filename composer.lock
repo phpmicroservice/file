@@ -1,158 +1,158 @@
 {
-  "_readme": [
-    "This file locks the dependencies of your project to a known state",
-    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-    "This file is @generated automatically"
-  ],
-  "content-hash": "af6f5cf73ea02e6292f388f62b8c4266",
-  "packages": [
-    {
-      "name": "aliyuncs/oss-sdk-php",
-      "version": "v2.3.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
-        "reference": "e69f57916678458642ac9d2fd341ae78a56996c8"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/e69f57916678458642ac9d2fd341ae78a56996c8",
-        "reference": "e69f57916678458642ac9d2fd341ae78a56996c8",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.3"
-      },
-      "require-dev": {
-        "phpunit/phpunit": "~4.0",
-        "satooshi/php-coveralls": "~1.0"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "OSS\\": "src/OSS"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "af6f5cf73ea02e6292f388f62b8c4266",
+    "packages": [
         {
-          "name": "Aliyuncs",
-          "homepage": "http://www.aliyun.com"
-        }
-      ],
-      "description": "Aliyun OSS SDK for PHP",
-      "homepage": "http://www.aliyun.com/product/oss/",
-      "time": "2018-01-08T06:59:35+00:00"
-    },
-    {
-      "name": "phpmicroservice/funch",
-      "version": "0.0.4",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/phpmicroservice/funch.git",
-        "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/phpmicroservice/funch/zipball/e8754c14a62a8258517ad4675a47dbe979e8ac0b",
-        "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">7"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "funch\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Dongasai",
-          "email": "1514582970@qq.com",
-          "homepage": "http://www.2xso.com",
-          "role": "Creator"
-        }
-      ],
-      "description": "PHP的基础函数的增强版本或补充功能",
-      "homepage": "https://github.com/phpmicroservice/funch",
-      "keywords": [
-        "function",
-        "lodash",
-        "method"
-      ],
-      "time": "2018-04-27T02:58:42+00:00"
-    },
-    {
-      "name": "phpmicroservice/pms-frame",
-      "version": "0.2.15",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/phpmicroservice/pms.git",
-        "reference": "ee174a24bafaba10b24411ca38933833aea00219"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/ee174a24bafaba10b24411ca38933833aea00219",
-        "reference": "ee174a24bafaba10b24411ca38933833aea00219",
-        "shasum": ""
-      },
-      "require": {
-        "ext-phalcon": "3.1.*",
-        "ext-swoole": ">=2.1",
-        "php": ">7.1",
-        "phpmicroservice/funch": "0.*"
-      },
-      "require-dev": {
-        "eaglewu/swoole-ide-helper": "dev-master@dev"
-      },
-      "type": "project",
-      "autoload": {
-        "psr-4": {
-          "pms\\": "src/"
+            "name": "aliyuncs/oss-sdk-php",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+                "reference": "e69f57916678458642ac9d2fd341ae78a56996c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/e69f57916678458642ac9d2fd341ae78a56996c8",
+                "reference": "e69f57916678458642ac9d2fd341ae78a56996c8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OSS\\": "src/OSS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "http://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun OSS SDK for PHP",
+            "homepage": "http://www.aliyun.com/product/oss/",
+            "time": "2018-01-08T06:59:35+00:00"
         },
-        "files": [
-          "src/index.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
         {
-          "name": "Dongasai",
-          "email": "1514582970@qq.com",
-          "homepage": "http://www.2xso.com",
-          "role": "Creator"
+            "name": "phpmicroservice/funch",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmicroservice/funch.git",
+                "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmicroservice/funch/zipball/e8754c14a62a8258517ad4675a47dbe979e8ac0b",
+                "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "funch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dongasai",
+                    "email": "1514582970@qq.com",
+                    "homepage": "http://www.2xso.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "PHP的基础函数的增强版本或补充功能",
+            "homepage": "https://github.com/phpmicroservice/funch",
+            "keywords": [
+                "function",
+                "lodash",
+                "method"
+            ],
+            "time": "2018-04-27T02:58:42+00:00"
+        },
+        {
+            "name": "phpmicroservice/pms-frame",
+            "version": "0.2.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmicroservice/pms.git",
+                "reference": "42d6dcac5507f6f21dac8e9da3865cf3d1b56c5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/42d6dcac5507f6f21dac8e9da3865cf3d1b56c5e",
+                "reference": "42d6dcac5507f6f21dac8e9da3865cf3d1b56c5e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-phalcon": "3.1.*",
+                "ext-swoole": ">=2.1",
+                "php": ">7.1",
+                "phpmicroservice/funch": "0.*"
+            },
+            "require-dev": {
+                "eaglewu/swoole-ide-helper": "dev-master@dev"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "pms\\": "src/"
+                },
+                "files": [
+                    "src/index.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dongasai",
+                    "email": "1514582970@qq.com",
+                    "homepage": "http://www.2xso.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "一个采用Swoole做底层,采用Phalcon作为框架类库的微服务框架",
+            "homepage": "http://pms.2xso.com",
+            "keywords": [
+                "Microservice",
+                "phalcon",
+                "swoole",
+                "tcp",
+                "websockect"
+            ],
+            "time": "2018-05-14T07:19:06+00:00"
         }
-      ],
-      "description": "一个采用Swoole做底层,采用Phalcon作为框架类库的微服务框架",
-      "homepage": "http://pms.2xso.com",
-      "keywords": [
-        "Microservice",
-        "phalcon",
-        "swoole",
-        "tcp",
-        "websockect"
-      ],
-      "time": "2018-05-09T07:26:20+00:00"
-    }
-  ],
-  "packages-dev": [],
-  "aliases": [],
-  "minimum-stability": "stable",
-  "stability-flags": [],
-  "prefer-stable": false,
-  "prefer-lowest": false,
-  "platform": [],
-  "platform-dev": []
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }
