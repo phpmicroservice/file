@@ -29,5 +29,6 @@ ENV MYSQL_USERNAME="email"
 EXPOSE 9502
 WORKDIR /var/www/html/
 RUN composer install
+WORKDIR /var/www/html/
 CMD php start/start.php
 

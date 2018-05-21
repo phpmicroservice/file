@@ -1,11 +1,12 @@
 <?php
 
-namespace logic\Attachment\Validator;
+namespace app\validator;
 
-use logic\Attachment\model as thisModel;
+use app\model as thisModel;
+use pms\Validation;
 
 
-class getPicPath extends \core\CoreValidator
+class getPicPath extends Validation\Validator
 {
 
     /**

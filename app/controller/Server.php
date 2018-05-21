@@ -12,6 +12,9 @@ use app\logic\attachmentArray;
 class Server extends \app\Controller
 {
 
+    /**
+     * 创建一个集合
+     */
     public function create_array()
     {
         $data = $this->getData();

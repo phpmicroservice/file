@@ -3,7 +3,7 @@
 namespace app\logic;
 
 use app\Base;
-use app\Validation\Upload;
+use app\validation\Upload;
 
 
 /**

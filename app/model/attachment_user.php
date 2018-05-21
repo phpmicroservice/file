@@ -28,13 +28,7 @@ class attachment_user extends \pms\Mvc\Model
         return $info;
     }
 
-    /**
-     * 更新之前
-     */
-    public function beforeUpdate()
-    {
-        $this->auxiliary = serialize($this->auxiliary);
-    }
+
 
     /**
      * 读取之后
@@ -53,6 +47,6 @@ class attachment_user extends \pms\Mvc\Model
      */
     protected function beforeSave()
     {
-        $this->auxiliary = $this->serialize($this->auxiliary);
+        $this->auxiliary = serialize($this->auxiliary);
     }
 }
