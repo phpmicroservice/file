@@ -29,7 +29,12 @@ class Controller extends \pms\Controller
             return new Group();
         });
         parent::initialize();
-        $this->user_id = $this->session->get('user_id');
+        if (is_object($this->session)) {
+            $this->user_id = $this->session->get('user_id');
+        } else {
+            $this->user_id = 0;
+        }
+
     }
 
 
