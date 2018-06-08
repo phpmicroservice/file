@@ -57,4 +57,20 @@ class Server extends \app\Controller
         # service\ArrayService::create_array($user_id, $remark, 0,$server_name);
         $this->connect->send_succee($bl);
     }
+
+
+    /**
+     *
+     * 检查集合中是否存在这个附件
+     */
+    public function ex_array()
+    {
+        $index = $this->getData('array_id');
+        $type = $this->getData('type');
+        $file_id = $this->getData('file_id');
+        $UserServer = new \app\logic\attachmentArray();
+        $bl = $UserServer->ex_array($index, $type, $file_id);
+        $this->connect->send_succee($bl);
+    }
 }
+

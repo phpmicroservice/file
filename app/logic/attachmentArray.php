@@ -4,6 +4,7 @@ namespace app\logic;
 
 use app\Base;
 use app\model\attachment_array;
+use app\model\attachment_array_correlation;
 
 /**
  * 附件集的处理
@@ -12,6 +13,60 @@ use app\model\attachment_array;
  */
 class attachmentArray extends Base
 {
+
+    /**
+     * 根据集合id获取这个集合下的附件列表
+     * @param $array_id
+     * @return \Phalcon\Mvc\Model\ResultsetInterface
+     */
+    public static function list4id($array_id, $info = false, $first = false)
+    {
+        if ($array_id == 0) {
+            return [];
+        }
+        $list = service\correlation::get_attachment_user_id_list($array_id, $info);
+        $list = \funch\Arr::for_index($list, null, function ($list) use ($info) {
+            $lissss = service\attachment_user::list4lid($list, $info);
+            return $lissss;
+        }, true);
+        if ($first) {
+            if (isset($list[0])) {
+                return $list[0];
+            }
+        }
+        return $list;
+    }
+
+    /**
+     * 集合中是否存在这个文件
+     * @param $index
+     * @param $type
+     * @param $file_id
+     */
+    public function ex_array($index, $type, $file_id)
+    {
+        $atay = attachment_array::findFirst([
+            'server_name= :type: and id =:index:',
+            'bind' => [
+                'type' => $type,
+                'index' => $index
+            ]
+        ]);
+        if (empty($atay)) {
+            return false;
+        }
+        $atc = attachment_array_correlation::findFirst([
+            'array_id =:index: and attachment_user_id =:file_id:',
+            'bind' => [
+                'file_id' => $file_id,
+                'index' => $index
+            ]
+        ]);
+        if (empty($atc)) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * 建立关系
@@ -80,31 +135,6 @@ class attachmentArray extends Base
         }
         return false;
     }
-
-
-    /**
-     * 根据集合id获取这个集合下的附件列表
-     * @param $array_id
-     * @return \Phalcon\Mvc\Model\ResultsetInterface
-     */
-    public static function list4id($array_id, $info = false, $first = false)
-    {
-        if ($array_id == 0) {
-            return [];
-        }
-        $list = service\correlation::get_attachment_user_id_list($array_id, $info);
-        $list = \funch\Arr::for_index($list, null, function ($list) use ($info) {
-            $lissss = service\attachment_user::list4lid($list, $info);
-            return $lissss;
-        }, true);
-        if ($first) {
-            if (isset($list[0])) {
-                return $list[0];
-            }
-        }
-        return $list;
-    }
-
 
     /**
      * 删除这个id

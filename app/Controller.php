@@ -17,6 +17,7 @@ use pms\Validation\Message\Group;
 class Controller extends \pms\Controller
 {
     protected $session_id;
+    protected $user_id = 0;
 
     /**
      * 初始化
