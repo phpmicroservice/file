@@ -51,6 +51,17 @@ class User extends \app\Controller
     }
 
 
+    /**
+     * 集合的附件列表
+     */
+    public function arraylist()
+    {
+        $index = $this->getData('array_id');
+        $userid = $this->user_id;
+        $Server = new \app\logic\attachmentArray();
+        $re = $Server->arraylist($userid, $index);
+        $this->connect->send_succee($re);
+    }
 
 
 }

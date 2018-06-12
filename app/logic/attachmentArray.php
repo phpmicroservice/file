@@ -15,6 +15,16 @@ class attachmentArray extends Base
 {
 
     /**
+     * 集合的附件列表
+     * @param $userid
+     * @param $index
+     */
+    public function arraylist($userid, $index)
+    {
+        return self::list4id($index);
+    }
+
+    /**
      * 根据集合id获取这个集合下的附件列表
      * @param $array_id
      * @return \Phalcon\Mvc\Model\ResultsetInterface
