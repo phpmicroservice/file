@@ -17,6 +17,7 @@ use pms\Validation\Message\Group;
 class Controller extends \pms\Controller
 {
     protected $session_id;
+    protected $user_id = 0;
 
     /**
      * 初始化
@@ -65,6 +66,9 @@ class Controller extends \pms\Controller
             $d = $re->toArray();
             $this->connect->send_error($d['message'], $d['data'], 424);
         } else {
+            if (is_object($re)) {
+                $re = json_decode(json_encode($re));
+            }
             $this->connect->send_succee($re, '成功');
         }
     }
