@@ -22,6 +22,6 @@ ENV MYSQL_PASSWORD="123456"
 ENV MYSQL_USERNAME="email"
 
 EXPOSE 80
-WORKDIR /var/www/html/app/web/
+WORKDIR /var/www/html/
 RUN composer install
 
