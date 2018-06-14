@@ -76,8 +76,7 @@ class User extends Base
         $model = attachment_array::findFirst([
             'id =:id: and only = 0 ',
             'bind' => [
-                'id' => $index,
-                'user_id' => $userid
+                'id' => $index
             ]
         ]);
         if (!($model instanceof attachment_array)) {
