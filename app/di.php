@@ -15,9 +15,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 $loader = new \Phalcon\Loader();
 $loader->registerNamespaces(
     [
-        'app' => ROOT_DIR . '/app/',
-        'pms' => ROOT_DIR . '/pms/',
-        'funch' => ROOT_DIR . '/tool/',
+        'app' => ROOT_DIR . '/app/'
     ]
 );
 $loader->register();
