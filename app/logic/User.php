@@ -74,19 +74,19 @@ class User extends Base
     {
         # 验证是否可以进行关联
         $model = attachment_array::findFirst([
-            'id =:id: and user_id =:user_id: and only = 0 ',
+            'id =:id: and only = 0 ',
             'bind' => [
                 'id' => $index,
                 'user_id' => $userid
             ]
         ]);
         if (!($model instanceof attachment_array)) {
-            return false;
+            return 'empty-info';
         }
         # 建立附件及其附件集的关系
         $re = service\ArrayService::correlation($index, $array_file_list, false);
         if ($re === false) {
-            return false;
+            return 'correlation-error';
         }
         return true;
     }

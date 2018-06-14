@@ -1,7 +1,5 @@
 <?php
-
 use Phalcon\Mvc\Application;
-
 require '../vendor/phpmicroservice/pms-frame/src/function.php';
 
 

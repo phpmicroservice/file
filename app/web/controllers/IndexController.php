@@ -20,6 +20,7 @@ class IndexController extends Base
 
     public function options()
     {
+        echo 1;
         return 1;
     }
 

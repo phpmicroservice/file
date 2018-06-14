@@ -29,6 +29,10 @@ class Alc extends Base
             return false;
         }
         # 进行rbac鉴权
+        if (!$dispatcher->session->get('user_id')) {
+            $dispatcher->connect->send_error('没有权限!!', [], 401);
+            return false;
+        }
         return true;
     }
 
