@@ -38,6 +38,7 @@ $di["router"] = function () {
     $router->setDefaultNamespace("app\\web\\controllers");
     $router->setDefaultController("index");
     $router->setDefaultAction("index");
+
     $router->addOptions('/:params', [
         "controller" => 'index',
         "action" => 'options',

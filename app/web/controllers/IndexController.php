@@ -20,7 +20,7 @@ class IndexController extends Base
 
     public function options()
     {
-
+        return 1;
     }
 
 }
