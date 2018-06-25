@@ -93,16 +93,16 @@
         },
         {
             "name": "phpmicroservice/pms-frame",
-            "version": "0.2.23",
+            "version": "0.2.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmicroservice/pms.git",
-                "reference": "7e22ed514b7a5627ceb45fff194f146fbde491f8"
+                "reference": "a6d191b5892c496015b6131bf96c081e7c4b422f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/phpmicroservice/pms/7e22ed514b7a5627ceb45fff194f146fbde491f8.zip",
-                "reference": "7e22ed514b7a5627ceb45fff194f146fbde491f8",
+                "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/a6d191b5892c496015b6131bf96c081e7c4b422f",
+                "reference": "a6d191b5892c496015b6131bf96c081e7c4b422f",
                 "shasum": ""
             },
             "require": {
@@ -144,7 +144,7 @@
                 "tcp",
                 "websockect"
             ],
-            "time": "2018-06-06T03:30:19+00:00"
+            "time": "2018-06-21T08:05:06+00:00"
         }
     ],
     "packages-dev": [],
