@@ -18,6 +18,7 @@ define('APP_SECRET_KEY', get_env("APP_SECRET_KEY", '77ZqeAppoLvZ1Fsc'));
 define('RUN_TIME', time());
 define('RUN_MICROTIME', microtime(true));
 define('NO_OUTPUT', 0);
+
 # 加载扩展
 require WEB_DIR . '/vendor/autoload.php';
 # 加载函数库
