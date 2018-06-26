@@ -27,5 +27,5 @@ WORKDIR /var/www/html/app/web/
 RUN composer install
 WORKDIR /var/www/html/
 RUN composer install
-RUN chmod -R /var/www/html/upload/
+RUN chmod -R 777 /var/www/html/upload/
 
