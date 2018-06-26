@@ -2,10 +2,8 @@
 use Phalcon\Mvc\Application;
 require '../vendor/phpmicroservice/pms-frame/src/function.php';
 
-
 define("SERVICE_NAME", "file");# 设置服务名字
 define('ROOT_DIR', dirname(__DIR__));
-
 define('WEB_DIR', ROOT_DIR . '/app/web/');
 define('INDEX_DIR', __DIR__);
 define('LANG_DIR', ROOT_DIR . '/language/');

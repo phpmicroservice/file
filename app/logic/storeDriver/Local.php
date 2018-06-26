@@ -10,7 +10,7 @@ class Local implements Action
 {
 
     protected static $config = [
-        'dir' => '../upload/'
+        'dir' => '/upload/'
     ];
     protected $info = [];
 
@@ -48,7 +48,7 @@ class Local implements Action
     {
 
         $md5 = md5_file($file);
-        $dirname = self::$config['dir'] . $newFile_dir . '/';
+        $dirname = ROOT_DIR . self::$config['dir'] . $newFile_dir . '/';
 
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
