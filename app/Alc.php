@@ -10,7 +10,9 @@ namespace app;
 class Alc extends Base
 {
     public $user_id;
-
+    public $serverTask = [
+         'server', 'transaction'
+    ];
     /**
      *
      * beforeDispatch 在调度之前
@@ -20,7 +22,7 @@ class Alc extends Base
      */
     public function beforeDispatch(\Phalcon\Events\Event $Event, \pms\Dispatcher $dispatcher)
     {
-        if ($dispatcher->getTaskName() == 'server' || $dispatcher->getTaskName() == 'index') {
+        if (in_array($dispatcher->getTaskName(), $this->serverTask)) {
             # 进行服务间鉴权
             return true;
         }
@@ -35,5 +37,8 @@ class Alc extends Base
         }
         return true;
     }
+
+
+
 
 }
