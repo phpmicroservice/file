@@ -52,6 +52,7 @@ class Local implements Action
 
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
+            var_dump($dirname);
             return "__ERROR_CREATE_DIR";
         } else if (!is_writeable($dirname)) {
             return "__ERROR_DIR_NOT_WRITEABLE";
