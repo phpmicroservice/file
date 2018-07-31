@@ -77,9 +77,10 @@ class fileService
         if (!$validation->validate($data)) {
             return \app\web\ReturnMsg::create(400, $validation->getErrorMessages());
         }
+
         $attachment_user = thisModel\attachment_user::findFirst4id($id);
         $info = \app\model\attachment::findFirst('id = ' . $attachment_user->attachment_id);
-        # 此处就不用储存驱动来读取图片对象了 ,直接读取图片对象
+        # 此处就不用储存驱动来读取图片对象了 ,直接读取本地图片对象
         $fileName = ROOT_DIR . '/upload/' . $info->savepath;
         if (!is_file($fileName)) {
             return ReturnMsg::create(410, 'gone' . $fileName);

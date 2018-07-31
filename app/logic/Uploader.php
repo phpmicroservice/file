@@ -77,6 +77,9 @@ class Uploader extends Base
     public function upFile($files, $uid, $type, $auxiliary = [])
     {
         $re = $this->saveFile($files);
+        if(is_string($re)){
+            return $re;
+        }
         $re76 = $this->user_save($re, $uid, $files, $type, $auxiliary = []);
         return $re76;
 
