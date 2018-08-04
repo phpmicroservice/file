@@ -72,5 +72,17 @@ class Server extends \app\Controller
         $bl = $UserServer->ex_array($index, $type, $file_id);
         $this->connect->send_succee($bl);
     }
+
+
+    /**
+     * 集合的附件列表
+     */
+    public function arrayfilelist()
+    {
+        $index = $this->getData('array_id');
+        $Server = new \app\logic\attachmentArray();
+        $re = $Server->arraylist(0, $index);
+        $this->connect->send_succee($re);
+    }
 }
 
