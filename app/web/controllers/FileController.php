@@ -4,6 +4,7 @@ namespace app\web\controllers;
 
 
 use app\logic as mainUpload;
+use app\logic\File;
 
 /**
  * 文件上传处理
@@ -55,7 +56,7 @@ class FileController extends BaseController
         $pid = $this->getParam(0);
         $fileService = new mainUpload\fileService();
         $obj = $fileService->getFileObj($pid, $this->user_id);
-        if ($obj instanceof \core\Sundry\File) {
+        if ($obj instanceof File) {
             $this->response->setContentLength($obj->getSize());
             header("Content-Type:application/octet-stream");
             header("Content-Disposition:attachment;filename=" . $obj->getAsName());
