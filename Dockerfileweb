@@ -6,7 +6,7 @@ RUN apt update;apt install -y vim
 COPY . /var/www/html/
 COPY file.ini /usr/local/etc/php/conf.d/
 ENV APP_SECRET_KEY="123456"
-ENV VIRTUAL_HOST=ykm_file_web.y128.psd1412.com
+ENV VIRTUAL_HOST=demo01fileweb.y128.psd1412.com
 
 ENV GCACHE_HOST="192.168.1.1"
 ENV GCACHE_PORT="6379"
