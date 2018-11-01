@@ -49,12 +49,29 @@ $di["router"] = function () {
 
 
 // Registering the view component
-$di->set('view', function () {
-    $view = new \Phalcon\Mvc\View();
-    $view->setViewsDir(WEB_DIR . '/views/');
+// Register Volt as template engine with an anonymous function
+$di->set(
+    'view',
+    function () {
+        $view = new \Phalcon\Mvc\View();
 
-    return $view;
-});
+        $view->setViewsDir(__DIR__ . '/../views/');
+
+        $view->registerEngines(
+            [
+                '.volt' => function ($view, $di) {
+                    $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
+
+                    // Set some options here
+
+                    return $volt;
+                }
+            ]
+        );
+
+        return $view;
+    }
+);
 
 // Registering a dispatcher
 $di->setShared('dispatcher', function () {
@@ -130,20 +147,16 @@ $di->setShared('logger', function () {
     return $logger;
 });
 
-/**
- * Start the session the first time some component request the session service
- */
-$di->setShared('session', function () use ($di) {
-    session_start();
-    $csid = $_COOKIE["PHPSESSID"] ?? '';
-    $auth = empty($csid) ? $di['request']->getHeader('sid') : $csid;
-    $sid = empty($auth) ? $di['request']->get('sid') : $auth;
-    $sid = empty($sid) ? md5(uniqid() . time() . uniqid() . \funch\Str::rand(5)) : $sid;
-    setcookie('PHPSESSID', $sid);
-    $session = new \app\web\Session($sid);
-    $_SESSION = $session;
-    return $session;
-});
+
+// Registering the view component
+// Register Volt as template engine with an anonymous function
+$di->set(
+    'session',
+    function () {
+        $session = new \app\web\Session();
+        return $session;
+    }
+);
 
 
 

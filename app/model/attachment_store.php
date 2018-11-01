@@ -17,7 +17,7 @@ class attachment_store extends \pms\Mvc\Model
 
     public function afterFetch()
     {
-        return $this->configuration = unserialize($this->configuration);
+        return $this->configuration = json_decode($this->configuration, true);
     }
 
     public function setConfiguration()

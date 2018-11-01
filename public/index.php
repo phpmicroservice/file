@@ -1,11 +1,23 @@
 <?php
 use Phalcon\Mvc\Application;
-require '../vendor/phpmicroservice/pms-frame/src/function.php';
 
-define("SERVICE_NAME", "file");# 设置服务名字
+# 定义常量
 define('ROOT_DIR', dirname(__DIR__));
 define('WEB_DIR', ROOT_DIR . '/app/web/');
 define('INDEX_DIR', __DIR__);
+# 加载扩展
+require WEB_DIR . '/vendor/autoload.php';
+
+#读取环境变量
+$dotenv = new Dotenv\Dotenv(ROOT_DIR);
+$dotenv->load();
+
+require '../vendor/phpmicroservice/pms-frame/src/function.php';
+
+
+define("SERVICE_NAME", "file");# 设置服务名字
+
+
 define('LANG_DIR', ROOT_DIR . '/language/');
 define('EXTENDS_DIR', ROOT_DIR . '/extends/');
 define('RUNTIME_DIR', ROOT_DIR . '/runtime/');
@@ -17,8 +29,7 @@ define('RUN_TIME', time());
 define('RUN_MICROTIME', microtime(true));
 define('NO_OUTPUT', 0);
 
-# 加载扩展
-require WEB_DIR . '/vendor/autoload.php';
+
 # 加载函数库
 require ROOT_DIR . '/tool/function.php';
 error_reporting(E_ALL);

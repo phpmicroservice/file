@@ -58,8 +58,6 @@ class application extends Base
         $data = [
             'ip' => $_SERVER['REMOTE_ADDR'],
             'url' => $_SERVER['REQUEST_URI'],
-            'session_id' => $this->session->getId(),
-            'session' => serialize($_SESSION),
             'header' => serialize('1'),
             'get' => serialize($_GET),
             'post' => serialize($_POST),

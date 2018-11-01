@@ -15,7 +15,7 @@ class IndexController extends Base
 {
     public function index()
     {
-        var_dump($this->session->get('user_id'));
+        //var_dump($this->view);
     }
 
     public function options()

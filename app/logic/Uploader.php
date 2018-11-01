@@ -4,6 +4,7 @@ namespace app\logic;
 
 use app\Base;
 use app\validation\Upload;
+use app\logic\storeDriver;
 
 
 /**
@@ -17,6 +18,7 @@ class Uploader extends Base
     private $attachment_store; //储存配置
     private $storeInfo = []; //储存结果
     private $file; //文件上传对象
+    private $md5;// 文件的md5值
     private $stateInfo; //上传状态信息,
 
     /**
@@ -27,13 +29,8 @@ class Uploader extends Base
      */
     public function __construct()
     {
-        //读取配置信息
-        $data = \app\model\attachment_store::findFirst('id = ' . $this->dConfig->app->attachment_store);
-        if ($data) {
-            $this->attachment_store = $data->toArray();
-        } else {
-            throw new \Phalcon\Exception('attachment_store_config error');
-        }
+        //读取配置信
+
 
     }
 
@@ -53,6 +50,13 @@ class Uploader extends Base
         //上传之前进行文件验证
         $validation = new Upload();
         $validation->setRules($rules);
+        //读取配置信息
+        $data = \app\model\attachment_store::findFirstByid($rules['store']);
+        if ($data) {
+            $this->attachment_store = $data->toArray();
+        } else {
+            throw new \Phalcon\Exception('attachment_store_config error');
+        }
 
         $validation->setStore($this->attachment_store);
 
@@ -74,13 +78,14 @@ class Uploader extends Base
      * @param array $auxiliary
      * @return bool|\app\model\attachment_user|string
      */
-    public function upFile($files, $uid, $type, $auxiliary = [])
+    public function upFile($file, $uid, $type, $auxiliary = [])
     {
-        $re = $this->saveFile($files);
+        $this->md5 = md5_file($file->getTempName());
+        $re = $this->saveFile($file);
         if(is_string($re)){
             return $re;
         }
-        $re76 = $this->user_save($re, $uid, $files, $type, $auxiliary = []);
+        $re76 = $this->user_save($re, $uid, $file, $type, $auxiliary);
         return $re76;
 
     }
@@ -97,16 +102,17 @@ class Uploader extends Base
             return $re85;
         }
         //进行文件储存
-        $save_config = [
-            'file_store_path' => $this->get_file_store_path($file),
-            'store_path' => $this->getstore_name($file)
-        ];
+
 
         //实例化文件储存驱动
-        $driverName = ('app\\logic\\storeDriver\\' . ucfirst($this->attachment_store['driver']));
-        $storeDriver = new $driverName($this->attachment_store);
-        $reInfo = $storeDriver->add($file->getTempName(), $save_config['file_store_path'], $save_config['store_path']);
 
+        $driver = $this->attachment_store['driver'];
+        $storeDriver = storeDriver::getObject($driver, $this->attachment_store['configuration']);
+        //$reInfo = $storeDriver->add($file->getTempName(), $save_config['file_store_path'], $save_config['store_path']);
+        //var_dump(file_exists($file->getTempName()));
+        $to_name = $this->attachment_store['configuration']['dir'] . $this->get_file_store_path() . $this->getstore_name($file);
+        $this->storeInfo['savePath'] = $to_name;
+        $reInfo = $storeDriver->write(storeDriver::topath($driver, $to_name), file_get_contents($file->getTempName()));
         if (is_string($reInfo)) {
             return $reInfo;
         }
@@ -117,9 +123,9 @@ class Uploader extends Base
             'size' => $file->getSize(),
             'create_time' => time(),
             'status' => 1,
-            'savepath' => $reInfo['savePath'],
+            'savepath' => $to_name,
             'saveStore' => $this->attachment_store['id'],
-            'md5' => $reInfo['md5']
+            'md5' => $this->md5
         ];
 
         $attachmentModel = new \app\model\attachment();
@@ -143,9 +149,9 @@ class Uploader extends Base
     private function uq_check(\Phalcon\Http\Request\File $file)
     {
 
-        $MD5 = md5_file($file->getTempName());
+
         $re = \app\model\attachment::findFirst(
-            ['conditions' => 'md5 = "' . $MD5 . '"' . ' and ' .
+            ['conditions' => 'md5 = "' . $this->md5 . '"' . ' and ' .
                 'saveStore = ' . $this->attachment_store['id']]
         );
         if (!$re) {
@@ -156,13 +162,7 @@ class Uploader extends Base
 
     }
 
-    /**
-     * 获取文件实际保存地址
-     */
-    public function get_file_store_path(\Phalcon\Http\Request\File $file): string
-    {
-        return date('Y') . '/' . date('m') . '/' . date('d');
-    }
+
 
     /**
      * 获取文件保存 名字
@@ -173,6 +173,13 @@ class Uploader extends Base
         return uniqid() . '.' . $file->getExtension();
     }
 
+    /**
+     * 获取文件实际保存地址
+     */
+    public function get_file_store_path(): string
+    {
+        return date('Y') . '/' . date('m') . '/' . date('d') . '/' . mt_rand(10, 99) . '/';
+    }
 
     /**
      * 用户保存 文件保存
@@ -194,6 +201,7 @@ class Uploader extends Base
 
         if (!empty($info->toArray())) {
             # 存在信息,继续返回
+
             return $info->toArray()[0];
         }
 

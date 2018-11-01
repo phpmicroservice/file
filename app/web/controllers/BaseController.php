@@ -20,7 +20,7 @@ class BaseController extends \Phalcon\Mvc\Controller
      */
     public function initialize()
     {
-        $this->user_id = $this->session->get('uder_id');
+        $this->user_id = $this->session->user_id;
     }
 
     /**
@@ -99,7 +99,7 @@ class BaseController extends \Phalcon\Mvc\Controller
         }
 
         if ($re instanceof ReturnMsg) {
-            $this->restful($re);
+            return $this->restful($re);
         }
         return $this->restful_success($re);
     }
@@ -134,16 +134,18 @@ class BaseController extends \Phalcon\Mvc\Controller
 
         $msg = $msg_lang2;
         $this->response->setStatusCode($code, ReturnMsg::code2msg($code));
+
         $json = [
             'status' => $msg,
             'time' => date("Y-m-d H:i:s"),
             'run_uniqid' => RUN_UNIQID,
-            'user_id' => $this->session->get('user_id'),
+            'user_id' => $this->user_id,
             'data' => $data
         ];
 
         $this->response->setJsonContent($json);
         $this->view->disable();
+
         return $this->response;
 
     }

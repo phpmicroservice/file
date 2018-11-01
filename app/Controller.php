@@ -31,7 +31,7 @@ class Controller extends \pms\Controller
         });
         parent::initialize();
         if (is_object($this->session)) {
-            $this->user_id = $this->session->get('user_id');
+            $this->user_id = $this->session->user_id;
         } else {
             $this->user_id = 0;
         }
