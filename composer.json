@@ -1,6 +1,11 @@
 {
   "require": {
-    "phpmicroservice/pms-frame": "0.2.*",
-    "aliyuncs/oss-sdk-php": "^2.3"
+    "phpmicroservice/pms-frame": "0.3.*",
+    "aliyuncs/oss-sdk-php": "^2.3",
+    "league/flysystem": "^1.0",
+    "monster/flysystem-aliyun-oss": "^1.0",
+    "league/flysystem-aws-s3-v3": "^1.0",
+    "monster/aliyun-oss-sdk": "^1.0",
+    "apache/log4php": "^2.3"
   }
 }
