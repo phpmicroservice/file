@@ -1,6 +1,6 @@
 {
   "require": {
-    "phpmicroservice/funch": "0.*",
+    "phpmicroservice/funch": "~0.0.1",
     "aliyuncs/oss-sdk-php": "^2.3",
     "league/flysystem": "^1.0",
     "monster/flysystem-aliyun-oss": "^1.0",
