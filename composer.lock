@@ -731,12 +731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmicroservice/pms.git",
-                "reference": "da68b8ae9e84df5c70511e9fd7ec528649c66773"
+                "reference": "8a96725585908a21c8d6ac407d1a2258ca9890c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/da68b8ae9e84df5c70511e9fd7ec528649c66773",
-                "reference": "da68b8ae9e84df5c70511e9fd7ec528649c66773",
+                "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/8a96725585908a21c8d6ac407d1a2258ca9890c6",
+                "reference": "8a96725585908a21c8d6ac407d1a2258ca9890c6",
                 "shasum": ""
             },
             "require": {
@@ -780,10 +780,10 @@
                 "websockect"
             ],
             "support": {
-                "source": "https://github.com/phpmicroservice/pms/tree/master",
+                "source": "https://github.com/phpmicroservice/pms/tree/0.3",
                 "issues": "https://github.com/phpmicroservice/pms/issues"
             },
-            "time": "2019-02-12T12:58:38+00:00"
+            "time": "2019-02-17T10:16:48+00:00"
         },
         {
             "name": "psr/http-message",
