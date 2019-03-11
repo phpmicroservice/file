@@ -1,6 +1,13 @@
 {
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpmicroservice/pms.git"
+    }
+  ],
   "require": {
-    "phpmicroservice/pms-frame": "0.3.*",
+    "ext-pdo": "*",
+    "phpmicroservice/pms-frame": "0.3.*dev",
     "aliyuncs/oss-sdk-php": "^2.3",
     "league/flysystem": "^1.0",
     "monster/flysystem-aliyun-oss": "^1.0",
@@ -8,5 +15,8 @@
     "monster/aliyun-oss-sdk": "^1.0",
     "apache/log4php": "^2.3",
     "vlucas/phpdotenv": "^2.5"
+  },
+  "require-dev": {
+    "swoft/swoole-ide-helper": "^4.2"
   }
 }
